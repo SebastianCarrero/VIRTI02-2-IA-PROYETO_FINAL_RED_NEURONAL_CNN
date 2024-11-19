@@ -1,0 +1,25 @@
+python --version
+pip install virtualenv
+virtualenv mlp_env
+mlp_env\Scripts\activate
+pip install tensorflow numpy matplotlib
+pip install streamlit
+streamlit run app.py (Codigo para ejecutar la app en la termianl)
+pip freeze > requirements.txt (Sirve para guardar todas las librerias en un txt que hemos instalado en el entorno)
+git --version
+git init
+git add .
+git commit -m "Red Neuronal Conjunto de Datos MNIST Para Dígitos del 0 al 9"
+git remote add origin https://github.com/SebastianCarrero/VIRTI02-2-Inteligencia-artificial-.git
+git push -u origin master
+
+Clonar el entorno
+mlp_env\Scripts\activate  (Activar el entorno a clonar)
+LLevar a la carpeta donde voya tener la documentación el archivo riquerements
+
+deactivate (desactivar el entorno)
+python -m venv nuevo_entorno (crea el nuevo entorno)
+mlp_env_clone\Scripts\actívate (activarlo)
+pip install -r requirements.txt (instalo las librerías guardadas en el archivo riquerementes)
+
+
