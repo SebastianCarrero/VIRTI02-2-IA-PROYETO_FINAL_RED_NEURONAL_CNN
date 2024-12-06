@@ -6,14 +6,28 @@ from PIL import Image
 import gdown
 import os
 
-# Ruta local donde se guardará el modelo descargado
-MODEL_PATH = 'best_model.keras'
+import zipfile
 
-# Descargar el modelo desde Google Drive
-if not os.path.exists(MODEL_PATH):
+# Ruta donde se guardará el modelo descomprimido
+MODEL_PATH = 'best_model.keras'
+MODEL_ZIP_PATH = 'best_model.zip'
+
+# Descargar el archivo si no existe
+if not os.path.exists(MODEL_ZIP_PATH):
     file_id = '1GUmE7-jt437-oub8QhChCGM0G3exwtRD'  # ID del archivo de Google Drive
-    url = f'https://drive.google.com/uc?id={file_id}'
-    gdown.download(url, MODEL_PATH, quiet=False)
+    url = f'https://drive.google.com/uc?id={file_id}'  # Enlace de descarga directa
+    gdown.download(url, MODEL_ZIP_PATH, quiet=False)
+
+# Si el archivo está comprimido, descomprimirlo
+if MODEL_ZIP_PATH.endswith('.zip'):
+    with zipfile.ZipFile(MODEL_ZIP_PATH, 'r') as zip_ref:
+        zip_ref.extractall('.')  # Extrae el archivo en el directorio actual
+
+# Verifica si el archivo existe después de la descompresión
+if os.path.exists(MODEL_PATH):
+    print(f"El archivo {MODEL_PATH} está disponible para cargar.")
+else:
+    print(f"Error: El archivo {MODEL_PATH} no se pudo descomprimir correctamente.")
 
 # Cargar el modelo
 model = load_model(MODEL_PATH)
